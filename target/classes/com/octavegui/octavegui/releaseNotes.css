@@ -1,0 +1,77 @@
+.listViewFunctionIndex {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-radius: 0;
+    -fx-border-color: transparent;
+}
+
+.listViewFunctionIndex *.scroll-bar:horizontal,
+.listViewFunctionIndex *.scroll-bar:vertical {
+    -fx-padding: 0;
+}
+
+.listViewFunctionIndex *.scroll-bar:horizontal .track,
+.listViewFunctionIndex *.scroll-bar:vertical .track{
+    -fx-border-color: #e9e8e8;
+    -fx-background-color: #e9e8e8;
+}
+
+.listViewFunctionIndex *.scroll-bar:horizontal .increment-button ,
+.listViewFunctionIndex *.scroll-bar:horizontal .decrement-button ,
+.listViewFunctionIndex *.scroll-bar:vertical .increment-button ,
+.listViewFunctionIndex *.scroll-bar:vertical .decrement-button {
+    -fx-background-color: #e9e8e8;
+}
+
+.listViewFunctionIndex *.scroll-bar:horizontal .increment-arrow {
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: -90;
+
+}
+
+.listViewFunctionIndex *.scroll-bar:vertical .increment-arrow{
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: 0;
+}
+
+.listViewFunctionIndex *.scroll-bar:horizontal .decrement-arrow {
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: 90;
+
+}
+
+.listViewFunctionIndex *.scroll-bar:vertical .decrement-arrow {
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: -180;
+}
+
+.listViewFunctionIndex *.scroll-bar:horizontal .increment-arrow:hover ,
+.listViewFunctionIndex *.scroll-bar:horizontal .decrement-arrow:hover ,
+.listViewFunctionIndex *.scroll-bar:vertical .increment-arrow:hover ,
+.listViewFunctionIndex *.scroll-bar:vertical .decrement-arrow:hover {
+    -fx-background-color :derive(#4D4C4F,10.0%);
+    -fx-background-insets : -1, 0.0, 0.0;
+}
+
+
+.listViewFunctionIndex *.scroll-bar:horizontal .thumb,
+.listViewFunctionIndex *.scroll-bar:vertical .thumb {
+    -fx-background-color:derive(black,90%);
+    -fx-background-insets: 4, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.listViewFunctionIndex *.scroll-bar:horizontal .thumb:hover,
+.listViewFunctionIndex *.scroll-bar:vertical .thumb:hover {
+    -fx-background-color :derive(#4D4C4F,10.0%);
+    -fx-background-insets : 3, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}

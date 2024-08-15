@@ -1,0 +1,386 @@
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color:grey;
+    -fx-border-radius:3px;
+    -fx-padding: 0.1px;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #005cb2;
+}
+
+.buttonStyle {
+    -fx-background-color: white;
+    -fx-background-insets: 1px;
+    -fx-border-color:  #dddddc;
+    -fx-border-radius: 4px;
+    -fx-font-size: 10;
+}
+
+.buttonStyle:hover {
+    -fx-background-color: #e1eff9;
+    -fx-background-insets: 1px;
+    -fx-border-color:  #0079d5;
+    -fx-border-radius: 4px;
+    -fx-font-size: 10;
+}
+
+.radio-button .radio {
+    -fx-background-color: white;
+    -fx-border-color:grey;
+    -fx-border-radius:10px;
+    -fx-padding: 2.8px;
+}
+.radio-button:selected .radio{
+    -fx-border-color: transparent;
+    -fx-background-color: #005cb2;
+}
+.radio-button:selected .radio .dot {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+}
+
+.radio-button .dot {
+    -fx-background-radius: 10px;
+    -fx-padding: 2.8px;
+}
+
+.combo-box {
+    -fx-font: 10px "System";
+    -fx-background-color: white;
+    -fx-border-color: #d4d6d8;
+    -fx-border-radius:1px;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+}
+.combo-box-popup > .list-view {
+    -fx-pref-width: 100;
+}
+.combo-box > .list-cell {
+    -fx-padding: 0 0 0 0;
+    -fx-border-insets: 0 0 0 0;
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-base-color;
+}
+
+
+.comboBox {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.comboBox *.scroll-bar:horizontal,
+.comboBox *.scroll-bar:vertical {
+    -fx-padding: 0;
+}
+
+.comboBox *.scroll-bar:horizontal .track,
+.comboBox *.scroll-bar:vertical .track{
+    -fx-border-color: #e9e8e8;
+    -fx-background-color: #e9e8e8;
+}
+
+.comboBox *.scroll-bar:horizontal .increment-button ,
+.comboBox *.scroll-bar:horizontal .decrement-button ,
+.comboBox *.scroll-bar:vertical .increment-button ,
+.comboBox *.scroll-bar:vertical .decrement-button {
+    -fx-background-color: #e9e8e8;
+}
+
+.comboBox *.scroll-bar:horizontal .increment-arrow {
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: -90;
+
+}
+
+.comboBox *.scroll-bar:vertical .increment-arrow{
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: 0;
+}
+
+.comboBox *.scroll-bar:horizontal .decrement-arrow {
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: 90;
+
+}
+
+.comboBox *.scroll-bar:vertical .decrement-arrow {
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: -180;
+}
+
+.comboBox *.scroll-bar:horizontal .increment-arrow:hover ,
+.comboBox *.scroll-bar:horizontal .decrement-arrow:hover ,
+.comboBox *.scroll-bar:vertical .increment-arrow:hover ,
+.comboBox *.scroll-bar:vertical .decrement-arrow:hover {
+    -fx-background-color :derive(#4D4C4F,10.0%);
+    -fx-background-insets : -1, 0.0, 0.0;
+}
+
+
+.comboBox *.scroll-bar:horizontal .thumb,
+.comboBox *.scroll-bar:vertical .thumb {
+    -fx-background-color:derive(black,90%);
+    -fx-background-insets: 4, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.comboBox *.scroll-bar:horizontal .thumb:hover,
+.comboBox *.scroll-bar:vertical .thumb:hover {
+    -fx-background-color :derive(#4D4C4F,10.0%);
+    -fx-background-insets : 3, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}
+
+
+.color-picker {
+    -fx-color-rect-width: 25px;
+    -fx-color-rect-height: 15px;
+    -fx-background-color: transparent;
+    -fx-color-label-visible: false ;
+    -fx-arrows-visible: false;
+    -fx-padding: 0px;
+}
+.color-picker .arrow {
+    -fx-background-color: transparent;
+}
+
+.spinner {
+    -fx-background-color: white;
+    -fx-border-color:grey;
+}
+
+.spinner .text-field {
+    -fx-padding: 0;
+}
+
+.spinner .increment-arrow-button {
+    -fx-padding: 1 2 1 2;
+}
+.spinner .decrement-arrow-button {
+    -fx-padding: 1 2 1 2;
+}
+
+
+.spinner .increment-arrow-button .increment-arrow {
+    -fx-padding: 2 3 2 3;
+}
+.spinner .decrement-arrow-button .decrement-arrow {
+    -fx-padding: 2 3 2 3;
+}
+
+.buttonStyle {
+    -fx-background-color: white;
+    -fx-background-insets: 1px;
+    -fx-border-color:  #dddddc;
+    -fx-border-radius: 4px;
+    -fx-font-size: 10;
+}
+
+.buttonStyle:hover {
+    -fx-background-color: #e1eff9;
+    -fx-background-insets: 1px;
+    -fx-border-color:  #0079d5;
+    -fx-border-radius: 4px;
+    -fx-font-size: 10;
+}
+
+.textField {
+    -fx-border-width: 0px 0px 0.5px 0px;
+    -fx-border-color: black;
+    -fx-background-color: white;
+    -fx-background-radius: 0;
+}
+
+.scrollGeneral {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.scrollGeneral *.scroll-bar:horizontal,
+.scrollGeneral *.scroll-bar:vertical {
+    -fx-padding: 0;
+}
+
+.scrollGeneral *.scroll-bar:horizontal .track,
+.scrollGeneral *.scroll-bar:vertical .track{
+    -fx-border-color: #e9e8e8;
+    -fx-background-color: #e9e8e8;
+}
+
+.scrollGeneral *.scroll-bar:horizontal .increment-button ,
+.scrollGeneral *.scroll-bar:horizontal .decrement-button ,
+.scrollGeneral *.scroll-bar:vertical .increment-button ,
+.scrollGeneral *.scroll-bar:vertical .decrement-button {
+    -fx-background-color: #e9e8e8;
+}
+
+.scrollGeneral *.scroll-bar:horizontal .increment-arrow {
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: -90;
+
+}
+
+.scrollGeneral *.scroll-bar:vertical .increment-arrow{
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: 0;
+}
+
+.scrollGeneral *.scroll-bar:horizontal .decrement-arrow {
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: 90;
+
+}
+
+.scrollGeneral *.scroll-bar:vertical .decrement-arrow {
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: -180;
+}
+
+.scrollGeneral *.scroll-bar:horizontal .increment-arrow:hover ,
+.scrollGeneral *.scroll-bar:horizontal .decrement-arrow:hover ,
+.scrollGeneral *.scroll-bar:vertical .increment-arrow:hover ,
+.scrollGeneral *.scroll-bar:vertical .decrement-arrow:hover {
+    -fx-background-color :derive(#4D4C4F,10.0%);
+    -fx-background-insets : -1, 0.0, 0.0;
+}
+
+
+.scrollGeneral *.scroll-bar:horizontal .thumb,
+.scrollGeneral *.scroll-bar:vertical .thumb {
+    -fx-background-color:derive(black,90%);
+    -fx-background-insets: 4, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.scrollGeneral *.scroll-bar:horizontal .thumb:hover,
+.scrollGeneral *.scroll-bar:vertical .thumb:hover {
+    -fx-background-color :derive(#4D4C4F,10.0%);
+    -fx-background-insets : 3, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}
+
+.tabbedPanel:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.tabbedPanel:top > .tab-header-area > .tab-header-background {
+    -fx-background-color: #f5f4f5;
+}
+
+.tabbedPanel .tab {
+    -fx-background-color: #f3f2f2;
+    -fx-border-color: #e5e4e4;
+    -fx-padding: -3 10 -3 10;
+}
+.tabbedPanel .tab:selected {
+    -fx-background-color: white;
+}
+.tabbedPanel .tab:hover {
+    -fx-background-color: #ededed;
+}
+
+.tabbedPanel .tab-label {
+    -fx-font-family: "System";
+    -fx-text-fill: -fx-text-base-color;
+    -fx-font-size: 10px;
+}
+
+
+
+.treeViewDocContents *.scroll-bar:horizontal,
+.treeViewDocContents *.scroll-bar:vertical {
+    -fx-padding: 0;
+}
+
+.treeViewDocContents *.scroll-bar:horizontal .track,
+.treeViewDocContents *.scroll-bar:vertical .track{
+    -fx-border-color: #e9e8e8;
+    -fx-background-color: #e9e8e8;
+}
+
+.treeViewDocContents *.scroll-bar:horizontal .increment-button ,
+.treeViewDocContents *.scroll-bar:horizontal .decrement-button ,
+.treeViewDocContents *.scroll-bar:vertical .increment-button ,
+.treeViewDocContents *.scroll-bar:vertical .decrement-button {
+    -fx-background-color: #e9e8e8;
+}
+
+.treeViewDocContents *.scroll-bar:horizontal .increment-arrow {
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: -90;
+
+}
+
+.treeViewDocContents *.scroll-bar:vertical .increment-arrow{
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: 0;
+}
+
+.treeViewDocContents *.scroll-bar:horizontal .decrement-arrow {
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: 90;
+
+}
+
+.treeViewDocContents *.scroll-bar:vertical .decrement-arrow {
+    -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+    -fx-background-color: derive(black,90%);
+    -fx-padding: 0.3em;
+    -fx-rotate: -180;
+}
+
+.treeViewDocContents *.scroll-bar:horizontal .increment-arrow:hover ,
+.treeViewDocContents *.scroll-bar:horizontal .decrement-arrow:hover ,
+.treeViewDocContents *.scroll-bar:vertical .increment-arrow:hover ,
+.treeViewDocContents *.scroll-bar:vertical .decrement-arrow:hover {
+    -fx-background-color :derive(#4D4C4F,10.0%);
+    -fx-background-insets : -1, 0.0, 0.0;
+}
+
+
+.treeViewDocContents *.scroll-bar:horizontal .thumb,
+.treeViewDocContents *.scroll-bar:vertical .thumb {
+    -fx-background-color:derive(black,90%);
+    -fx-background-insets: 4, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.treeViewDocContents *.scroll-bar:horizontal .thumb:hover,
+.treeViewDocContents *.scroll-bar:vertical .thumb:hover {
+    -fx-background-color :derive(#4D4C4F,10.0%);
+    -fx-background-insets : 3, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}
+
+.treeViewDocContents {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}

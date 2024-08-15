@@ -1,0 +1,1780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.TreeItem?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.octavegui.octavegui.OctaveGUIController">
+   <children>
+      <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: white;" useSystemMenuBar="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <Menu mnemonicParsing="false" text="New">
+                    <items>
+                      <MenuItem fx:id="newScript_item" mnemonicParsing="false" onAction="#addTab" text="New Script">
+                           <graphic>
+                              <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/document-new.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                        <MenuItem fx:id="newFunction_item" mnemonicParsing="false" text="New Function..." />
+                        <MenuItem fx:id="newFigure_item" mnemonicParsing="false" text="New Figure" />
+                    </items>
+                  </Menu>
+                  <MenuItem mnemonicParsing="false" onAction="#openFile" text="Open...">
+                     <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/document-open.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                  <Menu text="Recent Editor Files">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="no_path" />
+                     </items>
+                  </Menu>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="loadWorkspace_item" mnemonicParsing="false" onAction="#openFolderDirectory" text="Load Workspace" />
+                  <MenuItem fx:id="saveWorkspaceAs_item" mnemonicParsing="false" onAction="#openFolderDirectory" text="Save Workspace As..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="exit_item" mnemonicParsing="false" onAction="#closeApplication" text="Exit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Undo">
+                     <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/edit-undo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Copy">
+                     <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/edit-copy.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Paste">
+                     <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/edit-paste.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Select All" />
+                  <MenuItem mnemonicParsing="false" text="Clear Clipboard" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="btnFindFiles" mnemonicParsing="false" onAction="#handleBtnFindFiles" text="Find Files...">
+                     <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/edit-find.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Clear Command Window" />
+                  <MenuItem mnemonicParsing="false" text="Clear Command History" />
+                  <MenuItem mnemonicParsing="false" text="Clear Workspace" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="btnSetPath" mnemonicParsing="false" onAction="#handleBtnSetPath" text="Set Path" />
+                  <MenuItem fx:id="btnPreferences" mnemonicParsing="false" onAction="#handleBtnPreferences" text="Preferences...">
+                     <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/preferences-system.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Debug">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Step">
+                     <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/db-step.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Step In">
+                     <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/db-step-in.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Step Out">
+                     <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/db-step-out.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Continue">
+                     <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/db-cont.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Quit Debug Mode">
+                     <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/db-stop.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Tools">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Start Profiler Session" />
+                  <MenuItem mnemonicParsing="false" text="Resume Profiler Session" />
+                  <MenuItem mnemonicParsing="false" text="Stop Profiler" />
+                  <MenuItem mnemonicParsing="false" text="Show Profile Data">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="P" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Window">
+               <items>
+                  <CheckMenuItem mnemonicParsing="false" text="Show Command Window" />
+                  <CheckMenuItem mnemonicParsing="false" text="Show Command History" />
+                  <CheckMenuItem mnemonicParsing="false" text="Show File Browser" />
+                  <CheckMenuItem mnemonicParsing="false" text="Show Workspace" />
+                  <CheckMenuItem mnemonicParsing="false" text="Show Editor" />
+                  <CheckMenuItem mnemonicParsing="false" text="Show Documentation" />
+                  <CheckMenuItem mnemonicParsing="false" text="Show Variable Editor" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Command Window" />
+                  <MenuItem mnemonicParsing="false" text="Command History">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="P" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="File Browser" />
+                  <MenuItem mnemonicParsing="false" text="Workspace" />
+                  <MenuItem mnemonicParsing="false" text="Editor" />
+                  <MenuItem mnemonicParsing="false" text="Documentation">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="P" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Variable Editor" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Previous Widget">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="P" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Reset Default Window Layout" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <Menu mnemonicParsing="false" text="Documentation">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="On Disk" />
+                        <MenuItem mnemonicParsing="false" text="Online" />
+                    </items>
+                  </Menu>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="openReportBug" mnemonicParsing="false" text="Report Bug" />
+                  <MenuItem fx:id="openPackagesOctave" mnemonicParsing="false" text="Octave Packages" />
+                  <MenuItem fx:id="openContributeOctave" mnemonicParsing="false" text="Contribute" />
+                  <MenuItem fx:id="openDonateOctave" mnemonicParsing="false" text="Donate to Octave">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="P" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="About Octave" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="News">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleBtnReleaseNotes" text="Release Notes" />
+                  <MenuItem mnemonicParsing="false" text="Community News" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <ToolBar layoutY="27.0" prefHeight="30.0" prefWidth="640.0" style="-fx-background-color: #f0f1f1;" styleClass="toolBarStyle" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <items>
+            <Line endX="-100.0" endY="35.0" startX="-100.0" startY="15.0" stroke="#a4a4a4" style="-fx-stroke-dash-array: 2 2 2 2; -fx-translate-x: 2;" />
+            <Button mnemonicParsing="false" onAction="#addTab" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/document-new.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#openFile" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/document-open.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Line endX="-100.0" endY="35.0" startX="-100.0" startY="15.0" stroke="#a4a4a4" style="-fx-stroke-dash-array: 1;" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/edit-copy.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/edit-paste.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/edit-undo.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Line endX="-100.0" endY="35.0" startX="-100.0" startY="15.0" stroke="#a4a4a4" style="-fx-stroke-dash-array: 1;" />
+            <Label minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="Current Directory:" />
+            <TextField fx:id="fieldDirectoryChooser" maxWidth="300.0" minHeight="25.0" minWidth="300.0" prefHeight="25.0" prefWidth="300.0" styleClass="fieldDirectoryChooserField" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/folder-up.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#openFolderDirectory" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/folder.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </items>
+      </ToolBar>
+      <SplitPane dividerPositions="0.33" layoutX="66.0" layoutY="157.0" prefHeight="500.0" prefWidth="900.0" styleClass="splitPane" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane fx:id="splitPane" dividerPositions="0.33, 0.66" orientation="VERTICAL" prefHeight="480.0" prefWidth="424.0" styleClass="splitPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                        <AnchorPane fx:id="fileBrowserAnchorPane" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane fx:id="innerWindowTitleBarFileBrowser" prefHeight="17.0" prefWidth="292.0" styleClass="innerWindowTitleBarFileBrowser" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label fx:id="innerWindowTitleBarFileBrowserLabel" layoutX="3.0" prefHeight="17.0" prefWidth="67.0" text="File Browser" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fx:id="innerWindowTitleBarFileBrowserX" fitHeight="10.0" fitWidth="10.0" layoutX="273.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="3.5">
+                                       <image>
+                                          <Image url="@../../../images/widget-close.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="innerWindowTitleBarFileBrowserMinimize" fitHeight="10.0" fitWidth="10.0" layoutX="253.40000000000003" layoutY="2.5" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="3.5">
+                                       <image>
+                                          <Image url="@../../../images/widget-undock.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <TreeView fx:id="treeView" layoutY="49.0" minHeight="0.0" minWidth="0.0" prefHeight="135.0" prefWidth="300.0" style="-fx-border-width: 0.5; -fx-border-color: black;" styleClass="fileBrowser" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="50.0" />
+                              <TextField fx:id="fieldDirectoryChooser1" layoutY="21.0" minHeight="0.0" minWidth="0.0" prefHeight="26.0" prefWidth="213.0" style="-fx-border-width: 0;" styleClass="fieldDirectoryChooserField" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="21.0" />
+                              <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="216.0" layoutY="22.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="34.0" styleClass="toolBarButtonStyle" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="22.0">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../images/folder-up.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button contentDisplay="CENTER" layoutX="256.0" layoutY="22.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0" styleClass="toolBarButtonStyle" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="22.0">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../images/folder-settings.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="workspaceAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="117.0">
+                           <children>
+                              <AnchorPane fx:id="innerWindowTitleBarWorkspace" prefHeight="17.0" prefWidth="200.0" styleClass="innerWindowTitleBarWorkspace" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label fx:id="innerWindowTitleBarWorkspaceLabel" layoutX="3.0" prefHeight="17.0" prefWidth="67.0" text="Workspace" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fx:id="innerWindowTitleBarWorkspaceX" fitHeight="10.0" fitWidth="10.0" layoutX="273.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="3.5">
+                                       <image>
+                                          <Image url="@../../../images/widget-close.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="innerWindowTitleBarWorkspaceMinimize" fitHeight="10.0" fitWidth="10.0" layoutX="252.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="3.5">
+                                       <image>
+                                          <Image url="@../../../images/widget-undock.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <CheckBox fx:id="workspaceFilterCBox" layoutX="40.0" layoutY="25.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="25.0" />
+                              <Label layoutX="2.0" layoutY="23.0" prefHeight="18.0" prefWidth="27.0" text="Filter" AnchorPane.topAnchor="24.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox editable="true" layoutX="56.0" layoutY="20.0" prefHeight="26.0" prefWidth="231.0" styleClass="arrow-button" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="20.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="-8.0" />
+                                 </padding>
+                              </JFXComboBox>
+                              <TableView fx:id="workspaceTable1" layoutX="20.0" layoutY="49.0" prefHeight="123.0" prefWidth="288.0" style="-fx-border-width: 0.5; -fx-border-color: black;" styleClass="workspaceTableStyle" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="48.0">
+                                <columns>
+                                  <TableColumn minWidth="40.0" prefWidth="90.0" text="Name" />
+                                  <TableColumn minWidth="40.0" prefWidth="90.0" text="Class" />
+                                    <TableColumn minWidth="65.0" prefWidth="90.0" text="Dimension" />
+                                    <TableColumn minWidth="40.0" prefWidth="90.0" text="Value" />
+                                    <TableColumn minWidth="65.0" prefWidth="90.0" text="Attribute" />
+                                </columns>
+                              </TableView>
+                           </children></AnchorPane>
+                        <AnchorPane fx:id="commandHistoryAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="117.0">
+                           <children>
+                              <AnchorPane fx:id="innerWindowTitleBarCommandHistory" prefHeight="17.0" prefWidth="200.0" styleClass="innerWindowTitleBarCommandHistory" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label fx:id="innerWindowTitleBarCommandHistoryLabel" layoutX="3.0" prefHeight="18.0" prefWidth="88.0" text="Command History" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fx:id="innerWindowTitleBarCommandHistoryX" fitHeight="10.0" fitWidth="10.0" layoutX="273.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="3.5">
+                                       <image>
+                                          <Image url="@../../../images/widget-close.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="innerWindowTitleBarCommandHistoryMinimize" fitHeight="10.0" fitWidth="10.0" layoutX="252.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="3.5">
+                                       <image>
+                                          <Image url="@../../../images/widget-undock.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <CheckBox fx:id="workspaceFilterCBox1" layoutX="39.0" layoutY="25.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="25.0" />
+                              <Label layoutX="2.0" layoutY="24.0" prefHeight="18.0" prefWidth="27.0" text="Filter" AnchorPane.topAnchor="24.0">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox editable="true" layoutX="47.0" layoutY="20.0" prefHeight="26.0" prefWidth="240.0" styleClass="arrow-button" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="20.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="-8.0" />
+                                 </padding>
+                              </JFXComboBox>
+                              <TableView fx:id="workspaceTable11" layoutX="2.0" layoutY="49.0" prefHeight="124.0" prefWidth="288.0" style="-fx-background-color: white; -fx-border-color: #838690; -fx-border-width: 0.5; -fx-border-color: black;" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="47.0">
+                                 <columns>
+                                    <TableColumn minWidth="40.0" prefWidth="288.0" style="-fx-alignment: LEFT;" text="&#10;" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TabPane fx:id="workspacePane" layoutX="90.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" side="BOTTOM" styleClass="workspacePane" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                      <Tab text="Command Window">
+                        <content>
+                          <AnchorPane fx:id="commandWindowAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <AnchorPane fx:id="innerWindowTitleBarCommandWindow" prefHeight="17.0" prefWidth="292.0" styleClass="innerWindowTitleBarFileBrowser" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label fx:id="innerWindowTitleBarCommandWindowLabel" layoutX="3.0" prefHeight="18.0" prefWidth="88.0" text="Command Window" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="innerWindowTitleBarCommandWindowX" fitHeight="10.0" fitWidth="10.0" layoutX="273.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="3.5">
+                                             <image>
+                                                <Image url="@../../../images/widget-close.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="innerWindowTitleBarCommandWindowMinimize" fitHeight="10.0" fitWidth="10.0" layoutX="253.40000000000003" layoutY="2.5" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="3.5">
+                                             <image>
+                                                <Image url="@../../../images/widget-undock.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                    <TextArea fx:id="commandWindowTextArea" layoutX="14.0" layoutY="53.0" prefHeight="442.0" prefWidth="594.0" styleClass="commandWindowTextArea" text="GNU Octave, version 8.1.0&#10;Copyright (C) 1993-2023 The Octave Project Developers.&#10;This is free software; see the source code for copying conditions.&#10;There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or&#10;FITNESS FOR A PARTICULAR PURPOSE.  For details, type 'warranty'.&#10;&#10;Octave was configured for &quot;x86_64-w64-mingw32&quot;.&#10;&#10;Additional information about Octave is available at https://www.octave.org.&#10;&#10;Please contribute if you find this software useful.&#10;For more information, visit https://www.octave.org/get-involved.html&#10;&#10;Read https://www.octave.org/bugs.html to learn how to submit bug reports.&#10;For information about changes from previous versions, type 'news'.&#10;&#10;&gt;&gt;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+                                       <font>
+                                          <Font name="Courier New" size="11.0" />
+                                       </font>
+                                    </TextArea>
+                                 </children></AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Documentation">
+                        <content>
+                          <AnchorPane fx:id="documentationAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <AnchorPane fx:id="innerWindowTitleBarDocumentation" prefHeight="17.0" prefWidth="292.0" styleClass="innerWindowTitleBarFileBrowser" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label fx:id="innerWindowTitleBarDocumentationLabel" layoutX="3.0" prefHeight="18.0" prefWidth="74.0" text="Documentation" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="innerWindowTitleBarDocumentationX" fitHeight="10.0" fitWidth="10.0" layoutX="273.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="3.5">
+                                             <image>
+                                                <Image url="@../../../images/widget-close.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="innerWindowTitleBarDocumentationMinimize" fitHeight="10.0" fitWidth="10.0" layoutX="253.40000000000003" layoutY="2.5" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="3.5">
+                                             <image>
+                                                <Image url="@../../../images/widget-undock.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                    <SplitPane dividerPositions="0.45" layoutX="79.0" layoutY="133.0" prefHeight="312.0" prefWidth="406.0" styleClass="splitPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="17.0">
+                                       <items>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <tabs>
+                                                    <Tab text="Contents">
+                                                      <content>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <TreeView layoutY="14.0" prefHeight="200.0" prefWidth="200.0" styleClass="treeViewDocContents" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <TreeItem expanded="true" value="GNU Octave Manual">
+                                                                        <children>
+                                                                           <TreeItem value="Preface">
+                                                                              <children>
+                                                                                 <TreeItem value="Acknowledgements" />
+                                                                                 <TreeItem value="Citing Octave in Publications" />
+                                                                                 <TreeItem value="How You Can Contribute to Octave" />
+                                                                                 <TreeItem value="Distribution" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="1 A Brief Introduction to Octave">
+                                                                              <children>
+                                                                                 <TreeItem value="1.1 Running Octave" />
+                                                                                 <TreeItem value="1.2 Simple Examples" />
+                                                                                 <TreeItem value="1.3 Conventions" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="2 Getting Started">
+                                                                              <children>
+                                                                                 <TreeItem value="2.1 Invoking Octave from the Command Line" />
+                                                                                 <TreeItem value="2.2 Quitting Octave" />
+                                                                                 <TreeItem value="2.3 Commands for Getting Help" />
+                                                                                 <TreeItem value="2.4 Command Line Editing" />
+                                                                                 <TreeItem value="2.5 How Octave Reports Errors" />
+                                                                                 <TreeItem value="2.6 Executable Octave Programs" />
+                                                                                 <TreeItem value="2.7 Comments in Octave Programs" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="3 Data Types">
+                                                                              <children>
+                                                                                 <TreeItem value="3.1 Built-in Data Types" />
+                                                                                 <TreeItem value="3.2 User-defined Data Types" />
+                                                                                 <TreeItem value="3.3 Object Sizes" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="4 Numeric Data Types">
+                                                                              <children>
+                                                                                 <TreeItem value="4.1 Matrices" />
+                                                                                 <TreeItem value="4.2 Ranges" />
+                                                                                 <TreeItem value="4.3 Single Precision Data Types" />
+                                                                                 <TreeItem value="4.4 Integer Data Types" />
+                                                                                 <TreeItem value="4.5 Bit Manipulations" />
+                                                                                 <TreeItem value="4.6 Logical Values" />
+                                                                                 <TreeItem value="4.7 Automatic Conversions of Data Types" />
+                                                                                 <TreeItem value="4.8 Predicates for Numeric Objects" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="5 Strings">
+                                                                              <children>
+                                                                                 <TreeItem value="5.1 Escape Sequences in String Constants" />
+                                                                                 <TreeItem value="5.2 Character Arrays" />
+                                                                                 <TreeItem value="5.3 String Operations" />
+                                                                                 <TreeItem value="5.4 Converting Strings" />
+                                                                                 <TreeItem value="5.5 Character Class Functions" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="6 Data Containers">
+                                                                              <children>
+                                                                                 <TreeItem value="6.1 Structures" />
+                                                                                 <TreeItem value="6.2 containers.Map" />
+                                                                                 <TreeItem value="6.3 Cell Arrays" />
+                                                                                 <TreeItem value="6.4 Comma-Separated Lists" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="7 Variables">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="8 Expressions">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="9 Evaluations">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="10 Statements">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="11 Functions and Scripts">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="12 Errors and Warnings">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="13 Debugging">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="14 Input and Output">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="15 Plotting">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="16 Matric Multiplication">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="17 Arithmetic">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="18 Linear Algebra">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="19 Vectorization and Faster Code Execution">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="20 Non linear Equations">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="21 Diagonal annd Permutation Matrices">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="22 Sparse Matrices">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="23 Numerical Integration">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="24 Differential Equations">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="25 Optimization">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="26 Statistics">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="27 Sets">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="28 Polynomial Manipulations">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="29 Interpolation">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="30 Geometry">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="31 Signal Processing" />
+                                                                           <TreeItem value="32 Image Processing">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="33 Audio Processing">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="34 Object Oriented Programming">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="35 GUI Development">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="36 System Utilities">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="37 System Utilities">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="Appendix A External Code Interface">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="Appendix B Test and Demo Functions">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="Appendix C Obsolente Functions" />
+                                                                           <TreeItem value="Appendix D Known Causes of Trouble">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="Appendix E Installing Octave">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="Appendix F Grammar and Parser">
+                                                                              <children>
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                                 <TreeItem value="" />
+                                                                              </children>
+                                                                           </TreeItem>
+                                                                           <TreeItem value="Appendix G GNU GENERAL PUBLIC LICENSE" />
+                                                                           <TreeItem value="Concept Index" />
+                                                                           <TreeItem value="Function Index" />
+                                                                           <TreeItem value="Operator Index" />
+                                                                           <TreeItem value="Graphics Properties Index" />
+                                                                        </children>
+                                                                     </TreeItem>
+                                                                  </TreeView>
+                                                               </children>
+                                                            </AnchorPane>
+                                                      </content>
+                                                    </Tab>
+                                                    <Tab text="Function Index">
+                                                      <content>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <JFXComboBox editable="true" layoutX="41.0" layoutY="7.0" prefHeight="22.0" prefWidth="219.0" styleClass="arrow-button" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                                     <opaqueInsets>
+                                                                        <Insets />
+                                                                     </opaqueInsets>
+                                                                     <padding>
+                                                                        <Insets bottom="-8.0" />
+                                                                     </padding>
+                                                                  </JFXComboBox>
+                                                                  <Label layoutX="11.0" layoutY="8.0" minHeight="20.0" minWidth="39.0" prefHeight="20.0" prefWidth="39.0" text="Search:" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="11.0" />
+                                                                  <ListView fx:id="listView" layoutX="14.0" layoutY="45.0" prefHeight="200.0" prefWidth="200.0" styleClass="listViewFunctionIndex" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0" />
+                                                               </children></AnchorPane>
+                                                      </content>
+                                                    </Tab>
+                                                      <Tab text="Bookmarks">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                                         </content>
+                                                      </Tab>
+                                                      <Tab text="Search">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                                         </content>
+                                                      </Tab>
+                                                  </tabs>
+                                                </TabPane>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane prefHeight="285.0" prefWidth="242.0">
+                                             <children>
+                                                <WebView fx:id="docWebPage" prefHeight="432.0" prefWidth="599.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
+                                                <ToolBar layoutY="-2.0" prefHeight="35.0" prefWidth="416.0" style="-fx-background-color: #f5f4f5;" styleClass="toolBarStyle" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <items>
+                                                      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                                         <graphic>
+                                                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../../images/go-home.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="toolBarButtonStyle">
+                                                         <graphic>
+                                                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../../images/go-previous.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <MenuButton alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" style="-fx-padding: 0 -5 0 -13;" styleClass="dropdownMenuButton">
+                                                        <items>
+                                                          <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                          <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                        </items>
+                                                         <font>
+                                                            <Font />
+                                                         </font>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                      </MenuButton>
+                                                      <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="toolBarButtonStyle">
+                                                         <graphic>
+                                                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../../images/go-next.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <MenuButton alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" style="-fx-padding: 0 -5 0 -13;" styleClass="dropdownMenuButton">
+                                                         <items>
+                                                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                         </items>
+                                                         <font>
+                                                            <Font />
+                                                         </font>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                      </MenuButton>
+                                                      <Line endX="-100.0" endY="35.0" startX="-100.0" startY="10.0" stroke="#a4a4a4" style="-fx-stroke-dash-array: 1;" />
+                                                      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                                         <graphic>
+                                                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../../images/edit-find.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Line endX="-100.0" endY="35.0" startX="-100.0" startY="10.0" stroke="#a4a4a4" style="-fx-stroke-dash-array: 1;" />
+                                                      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                                         <graphic>
+                                                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../../images/view-zoom-in.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                                         <graphic>
+                                                            <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../../images/view-zoom-out.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                                         <graphic>
+                                                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../../images/view-zoom-original.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Line endX="-100.0" endY="35.0" startX="-100.0" startY="10.0" stroke="#a4a4a4" style="-fx-stroke-dash-array: 1;" />
+                                                      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                                         <graphic>
+                                                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../../images/bookmark-new.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                   </items>
+                                                </ToolBar>
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </children></AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="Variable Editor">
+                           <content>
+                              <AnchorPane fx:id="variableEditorWindowAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="501.0" prefWidth="599.0">
+                                 <children>
+                                    <AnchorPane fx:id="innerWindowTitleBarVariableEditor" prefHeight="17.0" prefWidth="292.0" styleClass="innerWindowTitleBarFileBrowser" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label fx:id="innerWindowTitleBarVariableEditorLabel" layoutX="3.0" prefHeight="18.0" prefWidth="67.0" text="Variable Editor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="innerWindowTitleBarVariableEditorX" fitHeight="10.0" fitWidth="10.0" layoutX="273.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="3.5">
+                                             <image>
+                                                <Image url="@../../../images/widget-close.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="innerWindowTitleBarVariableEditorMinimize" fitHeight="10.0" fitWidth="10.0" layoutX="253.40000000000003" layoutY="2.5" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="3.5">
+                                             <image>
+                                                <Image url="@../../../images/widget-undock.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                    <ToolBar layoutX="-8.0" layoutY="33.0" prefHeight="30.0" prefWidth="640.0" style="-fx-background-color: #f5f4f5;" styleClass="toolBarStyle" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
+                                       <items>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/document-save.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/document-save-as.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Line endX="-100.0" endY="35.0" startX="-100.0" startY="10.0" stroke="#a4a4a4" style="-fx-stroke-dash-array: 1;" />
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/edit-cut.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/edit-copy.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/edit-paste.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Line endX="-100.0" endY="35.0" startX="-100.0" startY="10.0" stroke="#a4a4a4" style="-fx-stroke-dash-array: 1;" />
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/plot-xy-curve.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Line endX="-100.0" endY="35.0" startX="-100.0" startY="10.0" stroke="#a4a4a4" style="-fx-stroke-dash-array: 1;" />
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/go-up.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </items>
+                                    </ToolBar>
+                                 </children></AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Editor">
+                           <content>
+                              <AnchorPane fx:id="editorAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <AnchorPane fx:id="innerWindowTitleBarEditor" prefHeight="17.0" prefWidth="292.0" styleClass="innerWindowTitleBarFileBrowser" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label fx:id="innerWindowTitleBarEditorLabel" layoutX="3.0" prefHeight="18.0" prefWidth="34.0" text="Editor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="innerWindowTitleBarEditorX" fitHeight="10.0" fitWidth="10.0" layoutX="273.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="3.5">
+                                             <image>
+                                                <Image url="@../../../images/widget-close.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="innerWindowTitleBarEditorMinimize" fitHeight="10.0" fitWidth="10.0" layoutX="253.40000000000003" layoutY="2.5" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="3.5" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="3.5">
+                                             <image>
+                                                <Image url="@../../../images/widget-undock.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                    <MenuBar layoutY="48.0" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: white;" useSystemMenuBar="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="17.0">
+                                       <menus>
+                                          <Menu mnemonicParsing="false" text="File">
+                                             <items>
+                                                <MenuItem fx:id="open_item1" mnemonicParsing="false" text="New Script">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/document-new.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem fx:id="open_item11" mnemonicParsing="false" text="New Function..." />
+                                                <MenuItem fx:id="open_item12" mnemonicParsing="false" text="Open...">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/document-open.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <Menu mnemonicParsing="false" text="Recent Editor Files">
+                                                   <items>
+                                                      <MenuItem fx:id="open_item121" mnemonicParsing="false">
+                                                         <graphic>
+                                                            <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../../images/document-open.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </MenuItem>
+                                                   </items>
+                                                </Menu>
+                                                <SeparatorMenuItem mnemonicParsing="false" />
+                                                <MenuItem fx:id="open_item122" mnemonicParsing="false" text="Edit Function" />
+                                                <SeparatorMenuItem mnemonicParsing="false" />
+                                                <MenuItem fx:id="open_item123" disable="true" mnemonicParsing="false" text="Save File">
+                                                   <graphic>
+                                                      <ImageView disable="true" fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/document-save.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem fx:id="open_item124" mnemonicParsing="false" text="Save File As...">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/document-save-as.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <SeparatorMenuItem mnemonicParsing="false" />
+                                                <MenuItem fx:id="open_item125" mnemonicParsing="false" text="Close" />
+                                                <MenuItem fx:id="open_item126" mnemonicParsing="false" text="Close all" />
+                                                <MenuItem fx:id="open_item127" mnemonicParsing="false" text="Close Other Files" />
+                                                <SeparatorMenuItem mnemonicParsing="false" />
+                                                <MenuItem fx:id="open_item128" mnemonicParsing="false" text="Print...">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/document-print.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                             </items>
+                                          </Menu>
+                                          <Menu mnemonicParsing="false" text="Edit">
+                                             <items>
+                                                <MenuItem mnemonicParsing="false" text="Undo">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/edit-undo.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem mnemonicParsing="false" text="Redo">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/edit-redo.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <SeparatorMenuItem mnemonicParsing="false" />
+                                                <MenuItem mnemonicParsing="false" text="Cut">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/edit-cut.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem mnemonicParsing="false" text="Copy">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/edit-copy.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem mnemonicParsing="false" text="Paste">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/edit-paste.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <SeparatorMenuItem mnemonicParsing="false" />
+                                                <MenuItem mnemonicParsing="false" text="Select All" />
+                                                <SeparatorMenuItem mnemonicParsing="false" />
+                                                <MenuItem fx:id="btnFindFiles1" mnemonicParsing="false" onAction="#handleBtnFindFiles" text="Find Files...">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/edit-find.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem fx:id="btnFindFiles11" mnemonicParsing="false" onAction="#handleBtnFindFiles" text="Find and Replace...">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/edit-find-replace.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem fx:id="btnFindFiles12" mnemonicParsing="false" onAction="#handleBtnFindFiles" text="Find Next..." />
+                                                <MenuItem fx:id="btnFindFiles111" mnemonicParsing="false" onAction="#handleBtnFindFiles" text="Find Previous..." />
+                                                <SeparatorMenuItem mnemonicParsing="false" />
+                                                <Menu mnemonicParsing="false" text="Commands">
+                                                  <items>
+                                                    <MenuItem mnemonicParsing="false" text="Delete LIne" />
+                                                      <MenuItem mnemonicParsing="false" text="Copy Line" />
+                                                      <MenuItem mnemonicParsing="false" text="Cut Line" />
+                                                      <SeparatorMenuItem mnemonicParsing="false" />
+                                                      <MenuItem mnemonicParsing="false" text="Delete to Start of Word" />
+                                                      <MenuItem mnemonicParsing="false" text="Delete to End of Word" />
+                                                      <MenuItem mnemonicParsing="false" text="Delete to Start of Word" />
+                                                      <MenuItem mnemonicParsing="false" text="Delete to End of Line" />
+                                                      <SeparatorMenuItem mnemonicParsing="false" />
+                                                      <MenuItem mnemonicParsing="false" text="Duplicate Selection/Line" />
+                                                      <MenuItem mnemonicParsing="false" text="Transpose Line" />
+                                                      <SeparatorMenuItem mnemonicParsing="false" />
+                                                      <MenuItem mnemonicParsing="false" text="Show Component List" />
+                                                  </items>
+                                                </Menu>
+                                                <Menu mnemonicParsing="false" text="Format">
+                                                  <items>
+                                                    <MenuItem mnemonicParsing="false" text="Uppercase Selection" />
+                                                      <MenuItem mnemonicParsing="false" text="Lowercase Selection" />
+                                                      <SeparatorMenuItem mnemonicParsing="false" />
+                                                      <MenuItem mnemonicParsing="false" text="Comment" />
+                                                      <MenuItem mnemonicParsing="false" text="Uncomment" />
+                                                      <MenuItem mnemonicParsing="false" text="Comment (Choosing String)" />
+                                                      <SeparatorMenuItem mnemonicParsing="false" />
+                                                      <MenuItem mnemonicParsing="false" text="Indent Selection Rigidity" />
+                                                      <MenuItem mnemonicParsing="false" text="Unindent Selection Rigidity" />
+                                                      <MenuItem mnemonicParsing="false" text="Indent Code" />
+                                                      <SeparatorMenuItem mnemonicParsing="false" />
+                                                      <MenuItem mnemonicParsing="false" text="Convert Line Endings to Windows (CRLF)" />
+                                                      <MenuItem mnemonicParsing="false" text="Convert Line Endings to Unix (LF)" />
+                                                      <MenuItem mnemonicParsing="false" text="Convert Line Endings to Legacy Mac (CR)" />
+                                                  </items>
+                                                </Menu>
+                                                <Menu mnemonicParsing="false" text="Navigation">
+                                                   <items>
+                                                      <MenuItem mnemonicParsing="false" text="Go to Line..." />
+                                                      <MenuItem mnemonicParsing="false" text="Move to Matching Brace" />
+                                                      <MenuItem mnemonicParsing="false" text="Select to Matching Brace" />
+                                                      <SeparatorMenuItem mnemonicParsing="false" />
+                                                      <MenuItem mnemonicParsing="false" text="Next Bookmark" />
+                                                      <MenuItem mnemonicParsing="false" text="Previous Bookmark" />
+                                                      <MenuItem mnemonicParsing="false" text="Toggle Bookmark" />
+                                                      <MenuItem mnemonicParsing="false" text="Remove All Bookmarks" />
+                                                   </items>
+                                                </Menu>
+                                                <SeparatorMenuItem mnemonicParsing="false" />
+                                                <MenuItem fx:id="btnPreferences1" mnemonicParsing="false" onAction="#handleBtnPreferences" text="Preferences...">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/preferences-system.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem fx:id="btnPreferences11" mnemonicParsing="false" onAction="#handleBtnPreferences" text="Style Preferences...">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/preferences-system.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                             </items>
+                                          </Menu>
+                                          <Menu mnemonicParsing="false" text="View">
+                                             <items>
+                                                <Menu mnemonicParsing="false" text="Editor">
+                                                   <items>
+                                                      <MenuItem fx:id="open_item1251" mnemonicParsing="false" text="Show Line Numbers" />
+                                                      <MenuItem fx:id="open_item1261" mnemonicParsing="false" text="Show Whitespaces Characters" />
+                                                      <MenuItem fx:id="open_item1271" mnemonicParsing="false" text="Show Line Endings" />
+                                                      <MenuItem fx:id="open_item1252" mnemonicParsing="false" text="Show Indentation Guides" />
+                                                      <MenuItem fx:id="open_item1262" mnemonicParsing="false" text="Show Long Line Marker" />
+                                                      <MenuItem fx:id="open_item1272" mnemonicParsing="false" text="Show Toolbar" />
+                                                      <MenuItem fx:id="open_item12521" mnemonicParsing="false" text="Show Statusbar" />
+                                                      <MenuItem fx:id="open_item12621" mnemonicParsing="false" text="Show Horizontal Scrollbar" />
+                                                   </items>
+                                                </Menu>
+                                                <SeparatorMenuItem mnemonicParsing="false" />
+                                                <MenuItem fx:id="open_item13" mnemonicParsing="false" text="Zoom In">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/view-zoom-in.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem fx:id="open_item14" mnemonicParsing="false" text="Zoom Out">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/view-zoom-out.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem fx:id="open_item15" mnemonicParsing="false" text="Normal Size">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/view-zoom-original.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <SeparatorMenuItem mnemonicParsing="false" />
+                                                <MenuItem mnemonicParsing="false" text="Sort Tabs Alphabetically" />
+                                             </items>
+                                          </Menu>
+                                          <Menu mnemonicParsing="false" text="Debug">
+                                             <items>
+                                                <MenuItem mnemonicParsing="false" text="Toggle Breakpoint">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/bp-toggle.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem mnemonicParsing="false" text="Next Breakpoint">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/bp-next.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem mnemonicParsing="false" text="Previous Breakpoint">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/bp-prev.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem mnemonicParsing="false" text="Remove All Breakpoints">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/bp-rm-all.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <SeparatorMenuItem mnemonicParsing="false" />
+                                                <MenuItem mnemonicParsing="false" text="Step">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/db-step.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem disable="true" mnemonicParsing="false" text="Step In">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/db-step-in.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem disable="true" mnemonicParsing="false" text="Step Out">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/db-step-out.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem disable="true" mnemonicParsing="false" text="Continue">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/db-cont.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <SeparatorMenuItem mnemonicParsing="false" />
+                                                <MenuItem disable="true" mnemonicParsing="false" text="Quit Debug Mode">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/db-stop.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                             </items>
+                                          </Menu>
+                                          <Menu mnemonicParsing="false" text="Run">
+                                             <items>
+                                                <MenuItem disable="true" mnemonicParsing="false" text="Save FIle and Run / Continue">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../images/system-run.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </MenuItem>
+                                                <MenuItem disable="true" mnemonicParsing="false" text="Run Selection" />
+                                             </items>
+                                          </Menu>
+                                          <Menu mnemonicParsing="false" text="Help">
+                                             <items>
+                                                <MenuItem disable="true" mnemonicParsing="false" text="Help on Keyboard" />
+                                                <MenuItem disable="true" mnemonicParsing="false" text="Documentation on Keyboard" />
+                                             </items>
+                                          </Menu>
+                                       </menus>
+                                    </MenuBar>
+                                    <ToolBar prefHeight="30.0" prefWidth="640.0" style="-fx-background-color: #f5f4f5;" styleClass="toolBarStyle" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+                                       <items>
+                                          <Button fx:id="bttnNewFileEditor" mnemonicParsing="false" onAction="#addTab" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/document-new.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#openFile" prefHeight="28.0" prefWidth="28.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/document-open.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <MenuButton fx:id="fileHistoryMenuBttn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" style="-fx-padding: 0 -5 0 -13;" styleClass="dropdownMenuButton">
+                                             <font>
+                                                <Font />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </MenuButton>
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/document-save.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/document-save-as.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/document-print.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Line endX="-100.0" endY="35.0" startX="-100.0" startY="10.0" stroke="#a4a4a4" style="-fx-stroke-dash-array: 1;" />
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/edit-undo.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/edit-redo.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Line endX="-100.0" endY="35.0" startX="-100.0" startY="10.0" stroke="#a4a4a4" style="-fx-stroke-dash-array: 1;" />
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/edit-cut.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/edit-copy.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/edit-paste.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/edit-find-replace.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Line endX="-100.0" endY="35.0" startX="-100.0" startY="10.0" stroke="#a4a4a4" style="-fx-stroke-dash-array: 1;" />
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/system-run.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Line endX="-100.0" endY="35.0" startX="-100.0" startY="10.0" stroke="#a4a4a4" style="-fx-stroke-dash-array: 1;" />
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/bp-toggle.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/bp-prev.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/bp-next.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/bp-rm-all.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/db-step.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/db-step-in.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/db-step-out.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/db-cont.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="toolBarButtonStyle">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../images/db-stop.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </items>
+                                    </ToolBar>
+                                    <TabPane fx:id="tabPaneNewFileEditor" layoutY="301.0" prefHeight="406.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="72.0">
+                                       <tabs>
+                                          <Tab text="&lt;unnamed&gt;">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="599.0">
+                                                   <children>
+                                                      <AnchorPane layoutX="5.0" layoutY="-10.0" prefHeight="380.0" prefWidth="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" prefHeight="380.0" prefWidth="25.0" style="-fx-background-color: #dededf;" text="1&#10;2&#10;3&#10;4&#10;5&#10;6&#10;7&#10;8&#10;9&#10;10&#10;11&#10;12&#10;13&#10;14&#10;15&#10;16&#10;17&#10;18&#10;19&#10;20&#10;21&#10;22&#10;23&#10;24&#10;25&#10;26&#10;27&#10;28&#10;29&#10;30&#10;31&#10;32&#10;33&#10;34&#10;35&#10;36&#10;37&#10;38&#10;39&#10;40&#10;41&#10;42&#10;43&#10;44&#10;45" textAlignment="RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <font>
+                                                                  <Font name="Monospaced Regular" size="12.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane layoutX="37.0" layoutY="24.0" prefHeight="380.0" prefWidth="15.0" style="-fx-background-color: #bebfbe;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="0.0" />
+                                                      <JFXTextArea fx:id="scriptTextArea" layoutX="68.0" layoutY="97.0" prefHeight="380.0" prefWidth="554.0" styleClass="listViewFunctionIndex" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="10.0" />
+                                                         </font>
+                                                      </JFXTextArea>
+                                                   </children></AnchorPane>
+                                            </content>
+                                          </Tab>
+                                       </tabs></TabPane>
+                                    <AnchorPane layoutX="14.0" layoutY="387.0" prefHeight="10.0" prefWidth="599.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                       <children>
+                                          <Label fx:id="scriptTextAreaLine" layoutY="4.0" prefHeight="26.0" prefWidth="60.0" text="line: 0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="scriptTextAreaColumn" layoutX="163.0" layoutY="-1.0" prefHeight="26.0" prefWidth="60.0" text="col: 0" AnchorPane.leftAnchor="65.0" />
+                                          <Label layoutX="143.0" layoutY="-1.0" prefHeight="26.0" prefWidth="100.0" text="encoding: UTF-8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="135.0" AnchorPane.topAnchor="0.0" />
+                                          <Label layoutX="306.0" layoutY="-1.0" prefHeight="26.0" prefWidth="60.0" text="eol: CRLF" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="0.0" />
+                                          <Separator layoutX="54.0" orientation="VERTICAL" prefHeight="117.0" prefWidth="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="0.0" />
+                                          <Separator layoutX="122.0" orientation="VERTICAL" prefHeight="117.0" prefWidth="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0" />
+                                          <Separator layoutX="142.0" layoutY="20.0" orientation="VERTICAL" prefHeight="117.0" prefWidth="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children></AnchorPane>
+                           </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <AnchorPane layoutX="1.0" layoutY="560.0" prefHeight="21.0" prefWidth="921.0" style="-fx-background-color: #f0f0f0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="820.0" layoutY="-3.0" prefHeight="22.0" prefWidth="88.0" text="Profiler" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
